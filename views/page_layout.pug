@@ -1,0 +1,14 @@
+extends base_layout
+
+block body_content
+  header
+    a(href="/") Main Page 
+    a(href="/location") Location Search
+    a(href="/help") Help 
+
+  .main-content
+    h1= title
+    block page_content 
+      p Here should be page-content. This info comes from page_layout.pug
+
+  footer Copyright by #{author} in #{currentTime}.

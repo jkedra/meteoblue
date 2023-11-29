@@ -1,0 +1,21 @@
+extends page_layout
+
+block append scripts
+  script(src="js/pokazMape.js")
+
+  
+
+block page_content
+  form(action='/location' method='GET')
+    input.searchInput(autfocus='' placeholder='nazwa/miejscowość/skrót lotniska' type='search' name='qloc')
+  ul#locations
+    each i in results
+      li
+        span.location(id=`${i.lat} ${i.lon}` url=`${i.url}`)
+          | #{i.name}#{i.iata ? ` (${i.iata})` : ''}, 
+          | #{i.country},
+  br
+  div.locinfo
+  div.gmaps#gmaps(display="block")
+  
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS83qv6_UGD5glfsguqS0c6Xqt_7kbKv0&language=pl&region=PL&callback=mapsApiCallback" defer)
